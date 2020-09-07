@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+var myinfo=[
+{
+    name:"Anjali",
+    age:23,
+    country:"India",
+    Hobbies:["listening Music","Travelling"],
+},{
+    name:"Aanchal",
+    age:18,
+    country:"Australia",
+    Hobbies:["Reading","Writing"],
+
+},
+{
+    name:"Abhay",
+    age:34,
+    country:"India",
+    Hobbies:["Reading","Writing"],
+
+},
+{
+name: "Thor",
+age:400,
+country:"Asgard",
+Hobbies:["Drinking","Fighting"],
+},
+];
+myinfo.forEach(function(info){
+    if(info.age<30){
+        console.log(`${info.name} ${info.age} ${info.country} ${info.Hobbies[0]} ${info.Hobbies[1]}`);
+    }
+});
+
+
+
+
+
+    </script>
+</body>
+</html>
