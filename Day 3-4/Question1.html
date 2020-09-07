@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <img src="youtube.png" id="img1" style="width: 330px;height: 282px;">
+   <button id="button1" onclick="changeimage()" style="margin-left: -91px;background-color: darkslategray;font-size: 16px;color: white;">Button 3</button>
+   <button id="button2" onclick="changeimg()" style="margin-left: -184px;background-color:aquamarine;font-size: 16px;color: black;">Button 2</button>
+   <button id="button3" onclick="oldimage()" style="margin-left: -186px;background-color:greenyellow ;font-size: 16px;color:brown;">Button 1</button>
+<script>
+function changeimg(){
+var ele=document.getElementById("img1");
+var newUrl="pinterest.png";
+ele.src=newUrl;
+}
+function oldimage(){
+    var ele1=document.getElementById("img1");
+    var url="youtube.png";
+    ele1.src=url;
+}
+function changeimage(){
+var ele2=document.getElementById("img1");
+var newUrl2="twitter.png";
+ele2.src=newUrl2;
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

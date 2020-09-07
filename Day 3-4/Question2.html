@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="text" id="text1"><br><br>
+   <input type="text" id="text2"><br><br>
+   <button onclick="changetext()">Transfer My Text</button> 
+   <script> 
+function changetext(){
+ var text=document.getElementById("text1").value;
+ var ttext=document.getElementById("text2");
+ ttext.value=text;
+}
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
