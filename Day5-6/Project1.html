@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          * {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .data {
+        height: 500px;
+        width: 80%;
+        background-color: lightgray;
+        margin-left: 10%;
+        margin-top: 50px;
+        padding: 20px;
+        display: inline-block;
+      }
+
+      .table {
+        width: 100%;
+        margin-top: 20px;
+        /* font-family: calibri; */
+      }
+      th,
+      td {
+        height: 40px;
+        text-align: center;
+        padding: 5px;
+      }
+      .form {
+        margin-top: 20px;
+      }
+      input {
+        height: 40px;
+        text-indent: 20px;
+      }
+
+
+    </style>
+</head>
+<body>
+    <div class="data">
+        <h1>Objects</h1>
+        <div class="form">
+            <input
+              type="text"
+              placeholder="Search by Name"
+              id="searchName"
+              onkeyup="searchByName()"
+            />
+         
+     <input
+              type="text"
+              placeholder="Search by City"
+              id="searchCity"
+              onkeyup="searchByCity()"
+            />
+          </div>
+    <table border="1" class="table" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Sr No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>City</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody class="tdata" id="tdata"></tbody>
+      </table>
+    </div>
+
+    <script>
+let Objects = [
+  {
+    Name: "Anjali",
+    Age: 23,
+    City: "Delhi",
+    Salary: "6.3",
+  },
+  {
+    Name: "Akanksha",
+    Age: 24,
+    City: "Kanpur",
+    Salary: "5.10",
+  },
+  {
+    Name: "Ajay",
+    Age: 45,
+    City: "Meerut",
+    Salary: "6",
+  },
+  {
+    Name: "Abha",
+    Age: 20,
+    City: "UP",
+    Salary: "4.5",
+  },
+
+  {
+    Name: "Pearl",
+    Age: 19,
+    City: "Kashmir",
+    Salary: "2.5",
+  }
+
+
+];
+function display(superarray) {
+  let tabledata = "";
+
+  superarray.forEach(function (Objects, index) {
+    let currentrow = `<tr>
+    <td>${index + 1}</td>
+    <td>${Objects.Name}</td>
+    <td>${Objects.Age}</td>
+    <td>${Objects.City}</td>
+    <td>${Objects.Salary}</td>
+    <td>
+    <button onclick='deleteSuperhero(${index})'>delete</button></td>
+    
+    </tr>`;
+
+    tabledata += currentrow;
+  });
+
+  document.getElementsByClassName("tdata")[0].innerHTML = tabledata;
+  //   document.getElementById("tdata").innerHTML = tabledata;
+}
+
+display(Objects);
+
+function searchByName() {
+  let searchValue = document.getElementById("searchName").value;
+
+  let newdata = Objects.filter(function (o) {
+    return (
+      o.Name.toUpperCase().indexOf(searchValue.toUpperCase()) != -1
+    );
+  });
+
+  display(newdata);
+}
+function searchByCity() {
+  let searchValue = document.getElementById("searchCity").value;
+
+  let newdata = Objects.filter(function (o) {
+    return (
+      o.City.toUpperCase().indexOf(searchValue.toUpperCase()) != -1
+    );
+  });
+
+  display(newdata);
+}
+function deleteSuperhero(index) {
+  Objects.splice(index, 1);
+  display(Objects);
+}
+
+
+    </script>
+</body>
+</html>
