@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          * {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .data {
+        height: 500px;
+        width: 80%;
+        background-color: lightgray;
+        margin-left: 10%;
+        margin-top: 50px;
+        padding: 20px;
+        display: inline-block;
+      }
+
+      .table {
+        width: 100%;
+        margin-top: 20px;
+        /* font-family: calibri; */
+      }
+      th,
+      td {
+        height: 40px;
+        text-align: center;
+        padding: 5px;
+      }
+      .form {
+        margin-top: 20px;
+      }
+      input {
+        height: 40px;
+        text-indent: 20px;
+      }
+
+
+    </style>
+</head>
+<body>
+    <div class="data">
+        <h1>Buses</h1>
+            <div class="form">
+              <form onsubmit="addBuses(event)">
+                <input type="text" required placeholder="Name" id="name" />
+                <input type="text" required placeholder="Source" id="source" />
+                <input type="text" required placeholder="Destination" id="destination" />
+                <input type="number" required placeholder="Number" id="number" />
+                <input type="text" required placeholder="PassengerCapacity" id="capacity" />
+                <button type="submit">Add Buses</button>
+              </form>
+            </div>
+        <div class="form">
+            <input
+              type="text"
+              placeholder="Search by Source"
+              id="searchSource"
+              onkeyup="searchBySource()"
+            />
+         
+     <input
+              type="text"
+              placeholder="Search by Destination"
+              id="searchDestination"
+              onkeyup="searchByDestination()"
+            />
+          </div>
+    <table border="1" class="table" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Sr No</th>
+            <th>Name</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Number</th>
+            <th>PassengerCapacity</th>
+          </tr>
+        </thead>
+        <tbody class="tdata" id="tdata"></tbody>
+      </table>
+    </div>
+
+    <script>
+window.onload = function () {
+  let InitialBusStorage = [
+    {
+      name: "VRL Travels",
+      Source: "Karnataka",
+      Destination: "Rajasthan",
+      Number: 4360,
+      PassengerCapacity:419,
+    },
+    {
+        name: "Shrinath Travels & Transport Agency",
+      Source: "Maharashtra",
+      Destination: "Gujarat",
+      Number: "157",
+      PassengerCapacity:520,
+    },
+    {
+        name: "Neetabus company",
+      Source: "UP",
+      Destination: "MP",
+      Number: 825,
+      PassengerCapacity:189,
+    },
+  ];
+
+  if (localStorage.getItem("Buses") == null) {
+    localStorage.setItem("Buses", JSON.stringify(InitialBusStorage));
+  }
+};
+
+function display(superarray = undefined) {
+  let tabledata = "";
+  let buses;
+  if (superarray == undefined) {
+    buses = JSON.parse(localStorage.getItem("Buses"));
+  } else {
+    buses = superarray;
+  }
+
+  buses.forEach(function (bus, index) {
+    let currentrow = `<tr>
+      <td>${index + 1}</td>
+      <td>${bus.name}</td>
+      <td>${bus.Source}</td>
+      <td>${bus.Destination}</td>
+      <td>${bus.Number}</td>
+      <td>${bus.PassengerCapacity}</td>
+     
+      </tr>`;
+
+    tabledata += currentrow;
+  });
+
+  document.getElementsByClassName("tdata")[0].innerHTML = tabledata;
+  //   document.getElementById("tdata").innerHTML = tabledata;
+}
+
+display();
+
+function addBuses(e) {
+  e.preventDefault();
+  let bus = {};
+  let name = document.getElementById("name").value;
+  let source = document.getElementById("source").value;
+  let destination = document.getElementById("destination").value;
+  let number = document.getElementById("number").value;
+  let passenger = document.getElementById("capacity").value;
+  bus.name = name;
+  bus.Source = source;
+  bus.Destination = destination;
+  bus.Number = number;
+  bus.PassengerCapacity = passenger;
+
+
+  let superheroes = JSON.parse(localStorage.getItem("Buses"));
+  superheroes.push(bus);
+  localStorage.setItem("Buses", JSON.stringify(superheroes));
+
+  display();
+
+  document.getElementById("name").value = "";
+  document.getElementById("source").value = "";
+  document.getElementById("destination").value = "";
+  document.getElementById("number").value = "";
+  document.getElementById("capacity").value = "";
+}
+function searchBySource() {
+  let searchValue = document.getElementById("searchSource").value;
+  let superheroes = JSON.parse(localStorage.getItem("Buses"));
+  let newdata = superheroes.filter(function (superhero) {
+    return (
+      superhero.Source.toUpperCase().indexOf(searchValue.toUpperCase()) != -1
+      );
+  });
+  display(newdata);
+}
+function searchByDestination() {
+  let searchValue = document.getElementById("searchDestination").value;
+  let superheroes = JSON.parse(localStorage.getItem("Buses"));
+  let newdata = superheroes.filter(function (superhero) {
+    return (
+      superhero.Destination.toUpperCase().indexOf(searchValue.toUpperCase()) != -1
+      );
+  });
+  display(newdata);
+}
+    </script>
+</body>
+</html>
